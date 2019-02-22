@@ -1,0 +1,15 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Locations extends Model
+{
+    protected $fillable = [
+        'name',
+        'city',
+        'address',
+        'geolocation',
+    ];
+}
