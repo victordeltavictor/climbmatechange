@@ -20,7 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedInteger('climber_id');
             $table->unsignedInteger('location_id');
             $table->foreign('climber_id')->references('id')->on('climbers');
-            $table->foreign('location_id')->references('id')->on('location');
+            $table->foreign('location_id')->references('id')->on('locations');
             $table->timestamps();
         });
     }
