@@ -21,3 +21,7 @@ Route::get('/login', function (){
 Route::get('/logout', function (){
     return view('auth.logout');
 });
+
+
+Route::get('login/github', 'Auth\SocialiteController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\SocialiteController@handleProviderCallback');
