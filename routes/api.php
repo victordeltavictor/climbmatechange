@@ -18,3 +18,4 @@ Route::get('/climbers', 'ClimbersController@index');
 Route::get('/climbers/{id}', 'ClimbersController@show');
 Route::post('/locations', 'LocationsController@store');
 Route::get('/locations', 'LocationsController@index');
+Route::get('/locations/{id}', 'LocationsController@show');
