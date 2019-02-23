@@ -6,6 +6,7 @@ use App\Climbers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
 class ClimbersController extends Controller
@@ -79,11 +80,11 @@ class ClimbersController extends Controller
     {
         try {
             return Climbers::findOrFail($id);
-            
+
         }catch (ModelNotFoundException $modelNotFoundException){
-            return JsonResponse::create(
+            return Response::create(
                 null,
-                JsonResponse::HTTP_NOT_FOUND
+                Response::HTTP_NOT_FOUND
             );
         }
     }
