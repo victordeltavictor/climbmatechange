@@ -5,24 +5,48 @@ namespace App\Http\Controllers;
 use App\Climbers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class ClimbersController extends Controller
 {
     public function store(Request $request)
     {
-        $climber = new Climbers([
-            'account_id' => 0,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'grade' => $request->grade,
-        ]);
+        try {
+            $this->validate(
+                $request,
+                [
+                    'first_name' => 'required',
+                    'last_name' => 'required',
+                    'grade' => 'required',
+                ]
+            );
 
-        $climber->save();
+            $climber = new Climbers([
+                'account_id' => 0,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'grade' => $request->grade,
+            ]);
 
-        return JsonResponse::create(
-            $climber,
-            JsonResponse::HTTP_CREATED
-        );
+            $climber->save();
+
+            return JsonResponse::create(
+                $climber,
+                JsonResponse::HTTP_CREATED
+            );
+
+        }catch (ValidationException $validationException){
+            return JsonResponse::create(
+                $validationException->getMessage(),
+                $validationException->status
+            );
+
+        }catch (\Exception $exception){
+            return JsonResponse::create(
+                ['error' => 'an error occurred'],
+                JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
 
