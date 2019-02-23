@@ -10,4 +10,11 @@ class Appointments extends Model
         'time',
         'day',
     ];
+
+    public function climber(){
+        return $this->belongsTo("App\Climbers");
+    }
+    public function location(){
+        return $this->belongsTo("App\Locations");
+    }
 }
