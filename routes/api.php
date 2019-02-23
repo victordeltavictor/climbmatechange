@@ -15,3 +15,4 @@ use Illuminate\Http\Request;
 
 Route::post('/climbers', 'ClimbersController@store');
 Route::get('/climbers', 'ClimbersController@index');
+Route::get('/climbers/{id}', 'ClimbersController@show');

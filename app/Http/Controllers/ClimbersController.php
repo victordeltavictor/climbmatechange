@@ -9,6 +9,13 @@ use Illuminate\Validation\ValidationException;
 
 class ClimbersController extends Controller
 {
+
+    /**
+     * Store a new Climber
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function store(Request $request)
     {
         try {
@@ -50,8 +57,25 @@ class ClimbersController extends Controller
     }
 
 
+    /**
+     * List all Climbers
+     *
+     * @return array
+     */
     public function index()
     {
-        return Climbers::all();
+        return Climbers::all()->toArray();
+    }
+
+
+    /**
+     * Show a specific Climber
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function show($id)
+    {
+        return Climbers::find($id);
     }
 }
